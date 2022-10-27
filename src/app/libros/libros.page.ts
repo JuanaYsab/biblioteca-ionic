@@ -14,6 +14,7 @@ export class LibrosPage implements OnInit {
 
   public listaLibros: Libro[] = [];
   public cargandoLibros: boolean = false;
+  public modalVisible: boolean = false;
 
   constructor(
     private servicioLibros: LibrosService,
@@ -25,10 +26,10 @@ export class LibrosPage implements OnInit {
   }
 
   public cargarLibros(){
-    this.refresher?.complete()
+    this.refresher?.complete();
     this.cargandoLibros = true;
     this.servicioLibros.get().subscribe({
-      next: (libros)=> {
+      next: (libros) =>{
         this.listaLibros = libros;
         this.cargandoLibros = false;
       },
@@ -47,6 +48,8 @@ export class LibrosPage implements OnInit {
     });
   }
 
-  
+  public nuevo(){
+    this.modalVisible = true;
+  }
 
 }
